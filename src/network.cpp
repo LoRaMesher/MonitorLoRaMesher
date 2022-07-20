@@ -14,8 +14,8 @@ Network::Network() {
   localaddress = 0xFF;
   datapacketforme = 0;
   iamvia = 0;
+  queueSendSize = 0;
   initNetwork();
-
 }
 
 void Network::initNetwork() {
@@ -24,7 +24,6 @@ void Network::initNetwork() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
-  WiFi.disconnect();
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -108,7 +107,8 @@ int Network::doPostPacketTraffic() {
   int res = 0;
   int position = -1;
   char buffer[100];
-  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&pme=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X", receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, packetsforme, destinyunreach, notforme, iamvia, localaddress);
+  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&pme=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X",
+    receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, packetsforme, destinyunreach, notforme, iamvia, localaddress);
   res = micliente3.POST(buffer);
   if (res == -1) Serial.println("He intentado enviar el mensaje al servidor, pero he recibido error -1. Parece que el servidor está desconectado o no responde");
   else {
@@ -133,6 +133,11 @@ void Network::actualizeVariables() {
   sentHellopackets = radio.getSentHelloPacketsNum();
   datapacketforme = radio.getDataPacketsForMeNum();
   iamvia = radio.getReceivedIAmViaNum();
+  queueSendSize = radio.getSendQueueSize();
+}
+
+void Network::setLocalAddress(uint16_t address) {
+  localaddress = address;
 }
 
 int Network::doPostDataPacket(uint8_t dst, uint8_t src, uint8_t type, uint32_t payload, uint8_t sizExtra, uint8_t* address, int32_t* metric) {

@@ -45,6 +45,7 @@ private:
     int notforme;
     int datapacketforme;
     int iamvia;
+    int queueSendSize;
     uint16_t localaddress;
     void actualizeVariables();
     LoraMesher& radio = LoraMesher::getInstance();
