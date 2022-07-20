@@ -2,7 +2,6 @@
 #include <functional>
 
 Network::Network() {
- 
   receivedpackets = 0;
   sendpackets = 0;
   receivedhellopackets = 0;
@@ -20,7 +19,6 @@ Network::Network() {
 }
 
 void Network::initNetwork() {
-
   delay(5000);
   Serial.println();
   Serial.println();
@@ -40,18 +38,14 @@ void Network::initNetwork() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
-  // radio = LoraMesher::getInstance();
-
   setLocalAddress(radio.getLocalAddress());
-
-  initializeDatasending();
 }
 
 Network::~Network() {
   micliente.end();
   micliente2.end();
+  micliente3.end();
   vTaskDelete(SendingData_TaskHandle);
-
 }
 
 void Network::buildClient() {
@@ -73,7 +67,7 @@ void Network::buildClient() {
 
 
 }
-void Network::initializeDatasending() {
+void Network::initializeDataSendingTask() {
   int res;
   res = xTaskCreate(
     [](void* o) { static_cast<Network*>(o)->sendData(); },
@@ -101,7 +95,6 @@ void Network::sendData() {
 
     actualizeVariables();
 
-    //doPostRoutingTable(mibyte,metric,lastSeqNo,timeout,via);
     doPostPacketTraffic();
     if (resdata != -1) {
       Log.trace(F(" post exito neighbour data get done successfully with value %d and with answer from the server with value" CR), resdata);
@@ -109,6 +102,37 @@ void Network::sendData() {
       Log.trace(F(" Error sending neighbour data get to the server" CR));
     }
   }
+}
+
+int Network::doPostPacketTraffic() {
+  int res = 0;
+  int position = -1;
+  char buffer[100];
+  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&pme=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X", receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, packetsforme, destinyunreach, notforme, iamvia, localaddress);
+  res = micliente3.POST(buffer);
+  if (res == -1) Serial.println("He intentado enviar el mensaje al servidor, pero he recibido error -1. Parece que el servidor está desconectado o no responde");
+  else {
+    Serial.print("He enviado el mensaje al servidor, y me ha devuelto un código HTTP ");
+    Serial.println(res);
+    Serial.print("Esto es lo que ha mandado el server como respuesta");
+    Serial.println(micliente3.getString());
+  }
+  micliente3.end();
+  return res;
+}
+
+void Network::actualizeVariables() {
+  receivedpackets = radio.getReceivedDataPacketsNum();
+  sendpackets = radio.getSendPacketsNum();
+  receivedhellopackets = radio.getReceivedHelloPacketsNum();
+  broadcast = radio.getReceivedBroadcastPacketsNum();
+  forwardedpackets = radio.getForwardedPacketsNum();
+  packetsforme = radio.getDataPacketsForMeNum();
+  destinyunreach = radio.getDestinyUnreachableNum();
+  notforme = radio.getReceivedNotForMe();
+  sentHellopackets = radio.getSentHelloPacketsNum();
+  datapacketforme = radio.getDataPacketsForMeNum();
+  iamvia = radio.getReceivedIAmViaNum();
 }
 
 int Network::doPostDataPacket(uint8_t dst, uint8_t src, uint8_t type, uint32_t payload, uint8_t sizExtra, uint8_t* address, int32_t* metric) {
@@ -165,79 +189,3 @@ int Network::doPostRoutingTable(byte address, int metric, int lastSeqNo, unsigne
   micliente2.end();
   return res;
 }
-
-int Network::doPostPacketTraffic() {
-  int res = 0;
-  int position = -1;
-  char buffer[100];
-  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&pme=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X", receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, packetsforme, destinyunreach, notforme, iamvia, localaddress);
-  res = micliente3.POST(buffer);
-  if (res == -1) Serial.println("He intentado enviar el mensaje al servidor, pero he recibido error -1. Parece que el servidor está desconectado o no responde");
-  else {
-    Serial.print("He enviado el mensaje al servidor, y me ha devuelto un código HTTP ");
-    Serial.println(res);
-    Serial.print("Esto es lo que ha mandado el server como respuesta");
-    Serial.println(micliente3.getString());
-  }
-  micliente3.end();
-  return res;
-}
-
-int Network::doPostTest(int id, float lat, float longit) {
-  int res = 0;
-  //String buffer ="id=1&lat=8.0&long=9.1";
-  char buffer[30];
-  sprintf(buffer, "id=%d&lat=%f&long%f", id, lat, longit);
-  res = micliente3.POST(buffer);
-  if (res >= 0) {
-    Serial.println(micliente3.getString());
-
-
-  } else {
-    Serial.print("Error code: ");
-    Serial.println(res);
-  }
-  micliente3.end();
-  return res;
-}
-
-int Network::doGetTest() {
-  int res = 0;
-  Serial.print("Ha llegado aquí 1");
-  Log.verbose(F("ha llegado aquí verbose" CR));
-  res = micliente3.GET();
-  Serial.print("Ha llegado aquí");
-  if (res >= 0) {
-    Serial.println(micliente3.getString());
-
-  } else {
-    Serial.print("Error code: ");
-    //Serial.println(res);
-  }
-  micliente3.end();
-
-  return res;
-}
-
-void Network::setLocalAddress(uint16_t address) {
-  localaddress = address;
-}
-
-void Network::actualizeVariables() {
-  receivedpackets = radio.getReceivedDataPacketsNum();
-  sendpackets = radio.getSendPacketsNum();
-  receivedhellopackets = radio.getReceivedHelloPacketsNum();
-  broadcast = radio.getReceivedBroadcastPacketsNum();
-  forwardedpackets = radio.getForwardedPacketsNum();
-  packetsforme = radio.getDataPacketsForMeNum();
-  destinyunreach = radio.getDestinyUnreachableNum();
-  notforme = radio.getReceivedNotForMe();
-  sentHellopackets = radio.getSentHelloPacketsNum();
-  datapacketforme = radio.getDataPacketsForMeNum();
-  iamvia = radio.getReceivedIAmViaNum();
-}
-
-
-
-
-

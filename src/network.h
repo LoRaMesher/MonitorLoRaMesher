@@ -56,11 +56,8 @@ public:
     int doPostDataPacket(uint8_t dst, uint8_t src, uint8_t type, uint32_t payload, uint8_t sizExtra, uint8_t* address, int32_t* metric);
     int doPostRoutingTable(byte address, int metric, int lastSeqNo, unsigned long timeout, byte via);
     int doPostPacketTraffic();
-    int doPostTest(int id, float lat, float longit);
-    int doGetTest();
-    void setHost(char* host);
     void sendData();
-    void initializeDatasending();
+    void initializeDataSendingTask();
     void setLocalAddress(uint16_t address);
 };
 
