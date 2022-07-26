@@ -38,6 +38,7 @@ void Network::initNetwork() {
   Serial.println(WiFi.localIP());
 
   setLocalAddress(radio.getLocalAddress());
+  initializeDataSendingTask();
 }
 
 Network::~Network() {
@@ -73,7 +74,7 @@ void Network::initializeDataSendingTask() {
     "Sending data Routine",
     4096,
     this,
-    2,
+    7,
     &SendingData_TaskHandle);
   if (res != pdPASS) {
     Log.error(F("Receive User Task creation gave error: %d" CR), res);
@@ -107,8 +108,8 @@ int Network::doPostPacketTraffic() {
   int res = 0;
   int position = -1;
   char buffer[100];
-  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&pme=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X",
-    receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, packetsforme, destinyunreach, notforme, iamvia, localaddress);
+  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&qss=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X",
+    receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, queueSendSize, destinyunreach, notforme, iamvia, localaddress);
   res = micliente3.POST(buffer);
   if (res == -1) Serial.println("He intentado enviar el mensaje al servidor, pero he recibido error -1. Parece que el servidor está desconectado o no responde");
   else {

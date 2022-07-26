@@ -60,7 +60,7 @@ void printDataPacket(AppPacket<dataPacket>* packet) {
  */
 void processReceivedPackets(void*) {
     for (;;) {
-        int a;
+        
         /* Wait for the notification of processReceivedPackets and enter blocking */
         ulTaskNotifyTake(pdPASS, portMAX_DELAY);
         led_Flash(1, 100); //one quick LED flashes to indicate a packet has arrived

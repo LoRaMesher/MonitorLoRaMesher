@@ -31,8 +31,8 @@ private:
     HTTPClient micliente3;
     const String host = "http://192.168.1.59:8080/send_DataPacket";;
     const String host2 = "http://192.168.1.59:8080/send_RoutingTable";
-    //const String host3="http://192.168.41.159:8080/send_PacketTraffic";
-    const String host3 = "http://84.88.85.2:8080/send_PacketTraffic";
+    const String host3="http://192.168.41.159:8080/send_PacketTraffic";
+    //const String host3 = "http://84.88.85.2:8080/send_PacketTraffic";
     //const String host3="http://192.168.1.59:8080/send_PacketTraffic";
     int receivedpackets;
     int sendpackets;
