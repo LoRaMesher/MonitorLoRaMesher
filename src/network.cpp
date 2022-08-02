@@ -15,6 +15,10 @@ Network::Network() {
   datapacketforme = 0;
   iamvia = 0;
   queueSendSize = 0;
+  receivedcontrolbytes = 0;
+  receivedpayloadbytes = 0;
+  sendcontrolbytes = 0;
+  sendpayloadbytes = 0;
   initNetwork();
 }
 
@@ -74,7 +78,7 @@ void Network::initializeDataSendingTask() {
     "Sending data Routine",
     4096,
     this,
-    7,
+    2,
     &SendingData_TaskHandle);
   if (res != pdPASS) {
     Log.error(F("Receive User Task creation gave error: %d" CR), res);
@@ -108,8 +112,8 @@ int Network::doPostPacketTraffic() {
   int res = 0;
   int position = -1;
   char buffer[100];
-  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&qss=%d&dst=%d&nfm=%d&ivi=%d&ladd=%X",
-    receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, queueSendSize, destinyunreach, notforme, iamvia, localaddress);
+  sprintf(buffer, "rp=%d&sp=%d&rhp=%d&shp=%d&dpm=%d&brd=%d&fwd=%d&qss=%d&dst=%d&nfm=%d&ivi=%d&spb=%d&scb=%d&rpb=%d&rcb=%d&ladd=%X",
+    receivedpackets, sendpackets, receivedhellopackets, sentHellopackets, datapacketforme, broadcast, forwardedpackets, queueSendSize, destinyunreach, notforme, iamvia, sendpayloadbytes,sendcontrolbytes,receivedpayloadbytes,receivedcontrolbytes,localaddress);
   res = micliente3.POST(buffer);
   if (res == -1) Serial.println("He intentado enviar el mensaje al servidor, pero he recibido error -1. Parece que el servidor está desconectado o no responde");
   else {
@@ -135,6 +139,12 @@ void Network::actualizeVariables() {
   datapacketforme = radio.getDataPacketsForMeNum();
   iamvia = radio.getReceivedIAmViaNum();
   queueSendSize = radio.getSendQueueSize();
+  receivedcontrolbytes = radio.getReceivedControlBytes();
+  receivedpayloadbytes = radio.getReceivedPayloadBytes();
+  sendcontrolbytes = radio.getSentControlBytes();
+  sendpayloadbytes = radio.getSentPayloadBytes();
+
+  
 }
 
 void Network::setLocalAddress(uint16_t address) {

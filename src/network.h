@@ -46,6 +46,10 @@ private:
     int datapacketforme;
     int iamvia;
     int queueSendSize;
+    int receivedpayloadbytes;
+    int receivedcontrolbytes;
+    int sendcontrolbytes;
+    int sendpayloadbytes;
     uint16_t localaddress;
     void actualizeVariables();
     LoraMesher& radio = LoraMesher::getInstance();
