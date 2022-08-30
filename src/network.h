@@ -15,10 +15,10 @@ private:
     int packetsend;
     int packetreceived;
     TaskHandle_t SendingData_TaskHandle = NULL;
-    const char* ssid = "IoT";
-    const char* password = "Cucamonga";
-    //const char* ssid = "MOVISTAR_44B6";
-    //const char* password = "E2zeYs8s4t6uZJ86z2C9";
+    //const char* ssid = "IoT";
+    //const char* password = "Cucamonga";
+    const char* ssid = "MOVISTAR_44B6";
+    const char* password = "E2zeYs8s4t6uZJ86z2C9";
     //const char *ssid = "OPPO_A9_2020";
     //const char *password = "5a9a7f6643ca";
     const int httpport = 80;
@@ -31,9 +31,9 @@ private:
     HTTPClient micliente3;
     const String host = "http://192.168.1.59:8080/send_DataPacket";;
     const String host2 = "http://192.168.1.59:8080/send_RoutingTable";
-    const String host3="http://192.168.41.159:8080/send_PacketTraffic";
+    //const String host3="http://192.168.41.159:8080/send_PacketTraffic";
     //const String host3 = "http://84.88.85.2:8080/send_PacketTraffic";
-    //const String host3="http://192.168.1.59:8080/send_PacketTraffic";
+    const String host3="http://192.168.1.70:8080/send_PacketTraffic";
     int receivedpackets;
     int sendpackets;
     int receivedhellopackets;
