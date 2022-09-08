@@ -1,0 +1,30 @@
+version: "3"
+  #docker run -p 8080:8080 cowserver:1.0
+
+services:
+  web:
+    container_name: myapp
+    restart: always
+    environment:
+      LORA_MONGODB_HOST : "mongo"
+      LORA_MONGODB_DATABASE : "lora-app"
+    ports:
+      - "8080:8080"
+    build: .    
+    networks:
+      - myapp
+  mongo: 
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./todo-mongodb-data:/var/lib/mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - myapp
+networks:
+  myapp:
+    driver: bridge
+    external : true  
+    name: custom_network 
+                                                                                                                                                                            

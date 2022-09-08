@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-Hairline.eot');
+    src: local('Sinews Sans Pro Hairline'), local('SinewsSansPro-Hairline'),
+        url('SinewsSansPro-Hairline.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-Hairline.woff2') format('woff2'),
+        url('SinewsSansPro-Hairline.woff') format('woff'),
+        url('SinewsSansPro-Hairline.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-RegularItalic.eot');
+    src: local('Sinews Sans Pro Regular Italic'), local('SinewsSansPro-RegularItalic'),
+        url('SinewsSansPro-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-RegularItalic.woff2') format('woff2'),
+        url('SinewsSansPro-RegularItalic.woff') format('woff'),
+        url('SinewsSansPro-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-MediumItalic.eot');
+    src: local('Sinews Sans Pro Medium Italic'), local('SinewsSansPro-MediumItalic'),
+        url('SinewsSansPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-MediumItalic.woff2') format('woff2'),
+        url('SinewsSansPro-MediumItalic.woff') format('woff'),
+        url('SinewsSansPro-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-Thin.eot');
+    src: local('Sinews Sans Pro Thin'), local('SinewsSansPro-Thin'),
+        url('SinewsSansPro-Thin.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-Thin.woff2') format('woff2'),
+        url('SinewsSansPro-Thin.woff') format('woff'),
+        url('SinewsSansPro-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-Light.eot');
+    src: local('Sinews Sans Pro Light'), local('SinewsSansPro-Light'),
+        url('SinewsSansPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-Light.woff2') format('woff2'),
+        url('SinewsSansPro-Light.woff') format('woff'),
+        url('SinewsSansPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-Medium.eot');
+    src: local('Sinews Sans Pro Medium'), local('SinewsSansPro-Medium'),
+        url('SinewsSansPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-Medium.woff2') format('woff2'),
+        url('SinewsSansPro-Medium.woff') format('woff'),
+        url('SinewsSansPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-Regular.eot');
+    src: local('Sinews Sans Pro Regular'), local('SinewsSansPro-Regular'),
+        url('SinewsSansPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-Regular.woff2') format('woff2'),
+        url('SinewsSansPro-Regular.woff') format('woff'),
+        url('SinewsSansPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-HairlineItalic.eot');
+    src: local('Sinews Sans Pro Hairline Italic'), local('SinewsSansPro-HairlineItalic'),
+        url('SinewsSansPro-HairlineItalic.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-HairlineItalic.woff2') format('woff2'),
+        url('SinewsSansPro-HairlineItalic.woff') format('woff'),
+        url('SinewsSansPro-HairlineItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-LightItalic.eot');
+    src: local('Sinews Sans Pro Light Italic'), local('SinewsSansPro-LightItalic'),
+        url('SinewsSansPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-LightItalic.woff2') format('woff2'),
+        url('SinewsSansPro-LightItalic.woff') format('woff'),
+        url('SinewsSansPro-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sinews Sans Pro';
+    src: url('SinewsSansPro-ThinItalic.eot');
+    src: local('Sinews Sans Pro Thin Italic'), local('SinewsSansPro-ThinItalic'),
+        url('SinewsSansPro-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('SinewsSansPro-ThinItalic.woff2') format('woff2'),
+        url('SinewsSansPro-ThinItalic.woff') format('woff'),
+        url('SinewsSansPro-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+

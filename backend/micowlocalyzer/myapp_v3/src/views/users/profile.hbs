@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <body>
+        <main>
+            <h3 class="centrar-texto">Perfil</h3>
+            <div class="contenedor centrar-texto">
+                <img class="usuario__img" src="../img/usuario.png" alt="usuario">
+                <div class="usuario__datos">
+                    <p class="usuario__campos-tit">Usuario:</p>
+                    <p class="usuario__campos">{{user.name}}</p>
+                </div>
+                <div class="usuario__datos">
+                    <p class="usuario__campos-tit">Correo:</p>
+                    <p class="usuario__campos">{{user.email}}</p>
+                </div>
+                <div class="usuario__datos">
+                    <p class="usuario__campos-tit">Contraseña:</p>
+                    <p type="password" class="usuario__campos">***********</p>
+                </div>
+                <div class="usuario__boton">
+                    <button class="boton2 btn" type="button" name="button">Cambiar contraseña</button>
+                </div>
+                <div class="usuario__datos">
+                    <p class="usuario__campos-tit"># Localizadores:</p>
+                    <p class="usuario__campos">{{user.email}}</p>
+                </div>
+                <div class="usuario__boton">
+                    <button class="boton2 btn" type="button" name="button">Añadir localizador</button>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

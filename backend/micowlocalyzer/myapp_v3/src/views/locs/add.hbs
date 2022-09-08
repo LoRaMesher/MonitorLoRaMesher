@@ -1,0 +1,23 @@
+<html lang="en" dir="ltr">
+  <body>
+    <main>
+      <h3 class="centrar-texto">Añadir Localizador</h3>
+      <form class="formulario" action="/add_loc" method="POST">
+        <div class="campo">
+          <input class="campo__field" type="text" placeholder="Id" name="id" value="{{id}}">
+          <input type="hidden" name="name" value="{{user.name}}">
+        </div>
+        <button class="boton btn">Añadir</button>
+        <a class="campo__registrar" href="signin">Ya tienes cuenta? Inicia Sesión</a>
+      </form>
+    </main>
+  </body>
+  <div class="separacion"></div>
+  <footer class="footer fondo-negro">
+        <div class="barra">
+            <a class="logo">
+                <h1 class="logo__nombre no-margin centrar-texto texto-blanco">Cow<span class="logo__bold">Localizer</span></h1>
+            </a>
+        </div>
+    </footer>
+</html>

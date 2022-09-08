@@ -1,0 +1,23 @@
+<html lang="en" dir="ltr">
+  <body>
+    <main>
+      <h3 class="centrar-texto">Registrarse</h3>
+      <form class="formulario" action="/users/signup" method="POST">
+        <div class="campo">
+          <input class="campo__field" type="text" placeholder="Usuario" name="name" value="{{name}}">
+        </div>
+        <div class="campo">
+          <input class="campo__field" type="email" placeholder="E-mail" name="email">
+        </div>
+        <div class="campo">
+          <input class="campo__field" type="password" placeholder="Contraseña" name="password">
+        </div>
+        <div class="campo">
+          <input class="campo__field" type="password" placeholder="Repite la contraseña" name="confirm_password">
+        </div>
+        <button class="boton btn">Registrarse</button>
+        <a class="campo__registrar" href="signin">Ya tienes cuenta? Inicia Sesión</a>
+      </form>
+    </main>
+  </body>
+</html>
