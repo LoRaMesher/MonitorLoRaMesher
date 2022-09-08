@@ -5,7 +5,7 @@ A monitoring system for the LoRaMesher library
 # Backend directory 
 
 ## Disclaimer
-Stable version is in branch cronversion. An automatic setup is implemented but you should check first that the automatic setup has been successful. This may vary depending on the features of your server. Look carefully the troubleshooting section.
+Stable version is in branch cronversion the one added in this repository. To watch the original backend repository click [here](https://github.com/pellax/micowlocalyzer). An automatic setup is implemented but you should check first that the automatic setup has been successful. This may vary depending on the features of your server. Look carefully the troubleshooting section.
 
 ## Introduction
 Node server with Mongo database and ElasticSearch Engine, all connected with Elastic Javascript Client
